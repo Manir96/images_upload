@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "assets/css/css/bootstrap.min.css" %}>
+    <title>Document</title>
+</head>
+<body>
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card" >
+        <div class="card-body">
+          <div class="mb-3">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <label for="formFile" class="form-label">Name</label>
+              <input class="form-control" type="text" id="formFile" name="name">
+              <label for="formFile" class="form-label">Default file input example</label>
+              <input class="form-control" type="file" id="formFile" name="upload_image"><br>
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        {% if last_product %}
+        <p>Name: {{ last_product.name }}</p>
+        <div class="image">
+          <img src="/media/{{ last_product.product_image }}" alt="Image not found" class="img-fluid">
+        </div>
+        {% else %}
+        <p>No image uploaded yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  
+    
+  <script src={% static "assets/css/js/bootstrap.min.js"  %} ></script>
+</body>
+</html>
